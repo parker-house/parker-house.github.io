@@ -1,0 +1,11 @@
+.main-card{
+    flex: 0 1 30em; 
+    height: 220px;
+}
+
+.main-container{
+    display: flex;
+    align-items: center;
+    width:100%; 
+    height: 100vh;    
+}
