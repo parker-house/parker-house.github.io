@@ -14,16 +14,16 @@ const get = (url, fn) => {
 }
 
 let updateUi = (res) => {
-    let { man } = res;
+    let { name } = res;
     let trashMan = `
-        <h2>${man} to take out trash next</h2>
+        <h2>${name} to take out trash next</h2>
     `
     document.getElementById('trash-container').innerHTML = trashMan;
 }
+console.log(window.location.href);
 
-const url = 'https://parker-house.herokuapp.com/current-person';
-
-get(url, updateUi)
+const baseUrl = (window.location.href.startsWith('file://')) ? 'http://localhost:3000': 'https://parker-house.herokuapp.com';
+get(`${baseUrl}/current-person`, updateUi)
     .then(response => {
         console.log(response.message);
     })
@@ -34,7 +34,7 @@ get(url, updateUi)
 var nextPersonButton = document.getElementById('next-button');
 
 nextPersonButton.addEventListener('click', (e) => {
-    var url = 'https://parker-house.herokuapp.com/next-person';
+    var url = `${baseUrl}/next-person`;
     get(url, updateUi).then(res => {
         console.log(res.message);
     });
